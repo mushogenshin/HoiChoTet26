@@ -13,4 +13,9 @@ UCLASS()
 class HOICHOTET26_API AHCTPlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
+	
+	AHCTPlayerControllerBase();
+	
+public:
+	virtual void BeginPlay() override;
 };

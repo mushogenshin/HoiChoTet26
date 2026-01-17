@@ -13,4 +13,9 @@ UCLASS()
 class HOICHOTET26_API AHCTGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+	
+public:
+	AHCTGameModeBase();
+		
+	virtual void BeginPlay() override;
 };
