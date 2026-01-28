@@ -32,6 +32,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
 	UInputAction* MoveInputAction;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
+	UInputAction* LookInputAction;
+	
 private:
-	void Move(const FInputActionValue& Value);
+	void MovePawn(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
 };

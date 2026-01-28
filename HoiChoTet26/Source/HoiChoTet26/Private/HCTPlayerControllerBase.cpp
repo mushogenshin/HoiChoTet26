@@ -13,11 +13,11 @@ void AHCTPlayerControllerBase::BeginPlay()
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Bat dau xai Player Controller HoiChoTet"));
 	
+	// Add the mapping context 
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
 		if (DefaultInputSet)
 		{
-			// Add the mapping context with priority 0 (default)
 			Subsystem->AddMappingContext(DefaultInputSet, 0);
 		}
 	}
@@ -31,13 +31,18 @@ void AHCTPlayerControllerBase::SetupInputComponent()
 	{
 		// Bind the movement action
 		if (MoveInputAction){
-			EnhancedInputComponent->BindAction(MoveInputAction, ETriggerEvent::Triggered, this, &AHCTPlayerControllerBase::Move);
+			EnhancedInputComponent->BindAction(MoveInputAction, ETriggerEvent::Triggered, this, &AHCTPlayerControllerBase::MovePawn);
 		}
+		
+		// Bind the look action
+		if (LookInputAction){
+			EnhancedInputComponent->BindAction(LookInputAction, ETriggerEvent::Triggered, this, &AHCTPlayerControllerBase::Look);
+		}	
 	}
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void AHCTPlayerControllerBase::Move(const FInputActionValue& Value)
+void AHCTPlayerControllerBase::MovePawn(const FInputActionValue& Value)
 {
     const FVector2D Movement = Value.Get<FVector2D>();
     if (APawn* Pawn = GetPawn())
@@ -45,4 +50,11 @@ void AHCTPlayerControllerBase::Move(const FInputActionValue& Value)
         Pawn->AddMovementInput(Pawn->GetActorForwardVector(), Movement.Y);
         Pawn->AddMovementInput(Pawn->GetActorRightVector(), Movement.X);
     }
+}
+
+void AHCTPlayerControllerBase::Look(const FInputActionValue& Value)
+{
+	const FVector2D LookAxis = Value.Get<FVector2D>();
+	AddYawInput(LookAxis.X);
+	AddPitchInput(LookAxis.Y);
 }
