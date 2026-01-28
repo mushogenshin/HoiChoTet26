@@ -13,10 +13,10 @@ void AHCTHUD_Base::BeginPlay()
 	
 	if (ClassCuaTamPhong)
 	{
-		WidgetInstance = CreateWidget<UUserWidget>(GetOwningPlayerController(), ClassCuaTamPhong);
-		if (WidgetInstance)
+		UITamPhong = CreateWidget<UUserWidget>(GetOwningPlayerController(), ClassCuaTamPhong);
+		if (UITamPhong)
 		{
-			WidgetInstance->AddToViewport();
+			UITamPhong->AddToViewport();
 		}
 	}
 }

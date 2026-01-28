@@ -25,5 +25,5 @@ protected:
 	TSubclassOf<UUserWidget> ClassCuaTamPhong;
 
 	UPROPERTY()
-	UUserWidget* WidgetInstance;
+	UUserWidget* UITamPhong;
 };
