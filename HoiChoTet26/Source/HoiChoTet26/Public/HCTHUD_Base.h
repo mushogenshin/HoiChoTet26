@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "Blueprint/UserWidget.h"
 #include "HCTHUD_Base.generated.h"
+
 
 /**
  * 
@@ -21,7 +21,7 @@ public:
 	virtual void BeginPlay() override;
 
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "UI Hoi Cho Tet")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|UI")
 	TSubclassOf<UUserWidget> ClassCuaTamPhong;
 
 	UPROPERTY()
