@@ -33,5 +33,5 @@ protected:
 	UInputAction* MoveInputAction;
 	
 private:
-	void Move(const FInputActionValue& InputActionValue);
+	void Move(const FInputActionValue& Value);
 };

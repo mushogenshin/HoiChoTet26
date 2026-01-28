@@ -36,7 +36,13 @@ void AHCTPlayerControllerBase::SetupInputComponent()
 	}
 }
 
-void AHCTPlayerControllerBase::Move(const FInputActionValue& InputActionValue)
+// ReSharper disable once CppMemberFunctionMayBeConst
+void AHCTPlayerControllerBase::Move(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("TODO: implement Move possessed pawn"));
+    const FVector2D Movement = Value.Get<FVector2D>();
+    if (APawn* Pawn = GetPawn())
+    {
+        Pawn->AddMovementInput(Pawn->GetActorForwardVector(), Movement.Y);
+        Pawn->AddMovementInput(Pawn->GetActorRightVector(), Movement.X);
+    }
 }
