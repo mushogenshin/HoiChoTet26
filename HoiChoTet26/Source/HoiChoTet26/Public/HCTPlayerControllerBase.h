@@ -3,8 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
 #include "HCTPlayerControllerBase.generated.h"
+
+class UInputAction;
+class UInputMappingContext;
 
 /**
  * 
@@ -18,4 +22,16 @@ class HOICHOTET26_API AHCTPlayerControllerBase : public APlayerController
 	
 public:
 	virtual void BeginPlay() override;
+	
+protected:
+	virtual void SetupInputComponent() override;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
+	UInputMappingContext* DefaultInputSet;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
+	UInputAction* MoveInputAction;
+	
+private:
+	void Move(const FInputActionValue& InputActionValue);
 };
