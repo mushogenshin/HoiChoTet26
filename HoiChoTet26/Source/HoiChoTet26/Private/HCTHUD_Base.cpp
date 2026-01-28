@@ -11,5 +11,12 @@ void AHCTHUD_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UE_LOG(LogTemp, Warning, TEXT("Bat dau xai HUD HoiChoTet"));
+	if (ClassCuaTamPhong)
+	{
+		WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ClassCuaTamPhong);
+		if (WidgetInstance)
+		{
+			WidgetInstance->AddToViewport();
+		}
+	}
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "Blueprint/UserWidget.h"
 #include "HCTHUD_Base.generated.h"
 
 /**
@@ -18,4 +19,11 @@ class HOICHOTET26_API AHCTHUD_Base : public AHUD
 	
 public:
 	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "UI Hoi Cho Tet")
+	TSubclassOf<UUserWidget> ClassCuaTamPhong;
+
+	UPROPERTY()
+	UUserWidget* WidgetInstance;
 };
