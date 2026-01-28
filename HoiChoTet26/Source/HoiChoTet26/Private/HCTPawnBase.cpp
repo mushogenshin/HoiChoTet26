@@ -10,6 +10,9 @@ AHCTPawnBase::AHCTPawnBase()
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
+	// Enable rotation to follow the controller
+	bUseControllerRotationYaw = true;
+	
 	// FloatingPawnMovement automatically handles ConsumeMovementInputVector
 	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("MovementComponent"));
 }
