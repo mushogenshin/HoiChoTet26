@@ -13,7 +13,7 @@ void AHCTHUD_Base::BeginPlay()
 	
 	if (ClassCuaTamPhong)
 	{
-		WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ClassCuaTamPhong);
+		WidgetInstance = CreateWidget<UUserWidget>(GetOwningPlayerController(), ClassCuaTamPhong);
 		if (WidgetInstance)
 		{
 			WidgetInstance->AddToViewport();
