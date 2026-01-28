@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "HCTPawnBase.generated.h"
 
+class UFloatingPawnMovement;
+
 UCLASS()
 class HOICHOTET26_API AHCTPawnBase : public APawn
 {
@@ -18,6 +20,12 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UFloatingPawnMovement* MovementComponent;
+
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// float MoveSpeed = 600.f;
 
 public:
 	// Called every frame
