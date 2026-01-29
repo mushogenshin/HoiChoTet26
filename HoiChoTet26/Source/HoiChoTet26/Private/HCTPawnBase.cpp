@@ -13,8 +13,13 @@ AHCTPawnBase::AHCTPawnBase()
 	// Enable rotation to follow the controller
 	bUseControllerRotationYaw = true;
 	
+	// Must create a root component first
+	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+	SetRootComponent(Root);
+	
 	// FloatingPawnMovement automatically handles ConsumeMovementInputVector
 	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("MovementComponent"));
+	MovementComponent->UpdatedComponent = Root;
 }
 
 // Called when the game starts or when spawned
