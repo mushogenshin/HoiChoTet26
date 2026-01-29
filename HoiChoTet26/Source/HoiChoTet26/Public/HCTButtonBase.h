@@ -8,8 +8,8 @@
 
 class UBoxComponent;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnButtonOverlapBegin, AActor*, OverlappingActor);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnButtonOverlapEnd, AActor*, OverlappingActor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSignatureKhiBatDauOverlap, AActor*, OverlappingActor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSignatureKhiHetOverlap, AActor*, OverlappingActor);
 
 UCLASS()
 class HOICHOTET26_API AHCTButtonBase : public AActor
@@ -21,10 +21,10 @@ public:
 	AHCTButtonBase();
 	
 	UPROPERTY(BlueprintAssignable, Category=HoiChoTet)
-	FOnButtonOverlapBegin BuocChanVaoGianHang;
+	FSignatureKhiBatDauOverlap BuocChanVaoGianHang;
 	
 	UPROPERTY(BlueprintAssignable, Category=HoiChoTet)
-	FOnButtonOverlapEnd BuocChanRaKhoiGianHang;
+	FSignatureKhiHetOverlap BuocChanRaKhoiGianHang;
 
 protected:
 	// Called when the game starts or when spawned
