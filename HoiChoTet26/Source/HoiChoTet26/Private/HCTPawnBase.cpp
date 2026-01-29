@@ -2,6 +2,7 @@
 
 #include "HoiChoTet26/Public/HCTPawnBase.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Components/SphereComponent.h"
 
 
 // Sets default values
@@ -13,13 +14,18 @@ AHCTPawnBase::AHCTPawnBase()
 	// Enable rotation to follow the controller
 	bUseControllerRotationYaw = true;
 	
-	// Must create a root component first
-	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
-	SetRootComponent(Root);
+	// Create collision component as root
+	USphereComponent* CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
+	SetRootComponent(CollisionComponent);
+	CollisionComponent->InitSphereRadius(50.0f);
+	CollisionComponent->SetCollisionProfileName(TEXT("Pawn"));
+	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	CollisionComponent->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
+	CollisionComponent->SetGenerateOverlapEvents(true);
 	
 	// FloatingPawnMovement automatically handles ConsumeMovementInputVector
 	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("MovementComponent"));
-	MovementComponent->UpdatedComponent = Root;
+	MovementComponent->UpdatedComponent = CollisionComponent;
 }
 
 // Called when the game starts or when spawned
@@ -44,4 +50,3 @@ void AHCTPawnBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
-
