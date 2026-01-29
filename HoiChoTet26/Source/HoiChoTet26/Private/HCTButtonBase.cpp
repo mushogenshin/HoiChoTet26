@@ -47,7 +47,7 @@ void AHCTButtonBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AA
 {
 	if (OtherActor && OtherActor != this)
 	{
-		OnButtonOverlapBegin.Broadcast(OtherActor);
+		BuocChanVaoGianHang.Broadcast(OtherActor);
 	}
 }
 
@@ -56,6 +56,6 @@ void AHCTButtonBase::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAct
 {
 	if (OtherActor && OtherActor != this)
 	{
-		OnButtonOverlapEnd.Broadcast(OtherActor);
+		BuocChanRaKhoiGianHang.Broadcast(OtherActor);
 	}
 }

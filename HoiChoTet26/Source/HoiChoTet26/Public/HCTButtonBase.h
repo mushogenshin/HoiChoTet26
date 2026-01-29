@@ -20,11 +20,11 @@ public:
 	// Sets default values for this actor's properties
 	AHCTButtonBase();
 	
-	UPROPERTY(BlueprintAssignable)
-	FOnButtonOverlapBegin OnButtonOverlapBegin;
+	UPROPERTY(BlueprintAssignable, Category=HoiChoTet)
+	FOnButtonOverlapBegin BuocChanVaoGianHang;
 	
-	UPROPERTY(BlueprintAssignable)
-	FOnButtonOverlapEnd OnButtonOverlapEnd;
+	UPROPERTY(BlueprintAssignable, Category=HoiChoTet)
+	FOnButtonOverlapEnd BuocChanRaKhoiGianHang;
 
 protected:
 	// Called when the game starts or when spawned
