@@ -1,5 +1,5 @@
-#include "HoiChoTet26/Public/HCTPlayerControllerBase.h"
-#include "HoiChoTet26/Public/HCTPawnBase.h"
+#include "Framework/HCTPlayerControllerBase.h"
+#include "Framework/HCTPawnBase.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
@@ -45,9 +45,11 @@ void AHCTPlayerControllerBase::AcknowledgePossession(APawn* P)
 	Super::AcknowledgePossession(P);
 	
 	// Store reference to the first HCTPawnBase we possess
-	if (!OriginalPawn)
+	// ReSharper disable once CppUE4CodingStandardNamingViolationWarning
+	if (AHCTPawnBase* HCTPawn = Cast<AHCTPawnBase>(P); HCTPawn && !OriginalPawn)
 	{
-		OriginalPawn = Cast<AHCTPawnBase>(P);
+		OriginalPawn = HCTPawn;
+		UE_LOG(LogTemp, Warning, TEXT("AcknowledgePossession: Stored reference to original pawn %s"), *OriginalPawn->GetName());
 	}
 }
 
