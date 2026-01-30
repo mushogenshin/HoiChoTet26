@@ -62,6 +62,12 @@ void AHCTCharacter_2D::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 			EnhancedInputComponent->BindAction(MoveInputAction, ETriggerEvent::Triggered, this,
 											   &AHCTCharacter_2D::Move);
 		}
+		
+		// Bind the jump action
+		if (JumpInputAction)
+		{
+			EnhancedInputComponent->BindAction(JumpInputAction, ETriggerEvent::Started, this, &ACharacter::Jump);
+		}
 	}
 }
 

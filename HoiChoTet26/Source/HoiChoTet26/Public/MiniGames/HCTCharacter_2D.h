@@ -22,6 +22,9 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
 	UInputAction* MoveInputAction;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
+	UInputAction* JumpInputAction;
 
 public:
 	// Called every frame
