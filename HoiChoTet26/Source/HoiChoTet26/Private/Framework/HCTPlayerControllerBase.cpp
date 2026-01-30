@@ -13,13 +13,7 @@ void AHCTPlayerControllerBase::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("Bat dau xai Player Controller HoiChoTet"));
 	
 	// Add the mapping context 
-	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
-	{
-		if (DefaultInputSet)
-		{
-			Subsystem->AddMappingContext(DefaultInputSet, 0);
-		}
-	}
+	AddDefaultInputMappingCtx();
 }
 
 void AHCTPlayerControllerBase::SetupInputComponent()
@@ -73,9 +67,28 @@ void AHCTPlayerControllerBase::EjectGame()
 	// Unpossess current pawn from the mini-game
 	UnPossess();
 	
+	// Restore input mapping context
+	AddDefaultInputMappingCtx(true);
+	
 	// Try repossessing the original pawn 
 	if (OriginalPawn)
 	{
 		Possess(OriginalPawn);
+	}
+}
+
+
+void AHCTPlayerControllerBase::AddDefaultInputMappingCtx(const bool Clear) const
+{
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
+	{
+		if (Clear)
+		{
+			Subsystem->ClearAllMappings();
+		}
+		if (DefaultInputSet)
+		{
+			Subsystem->AddMappingContext(DefaultInputSet, 0);
+		}
 	}
 }

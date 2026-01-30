@@ -42,6 +42,6 @@ protected:
 	
 private:
 	void Look(const FInputActionValue& Value);
-	
 	void EjectGame();
+	void AddDefaultInputMappingCtx(bool Clear=false) const;
 };
