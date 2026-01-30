@@ -45,10 +45,10 @@ void AHCTPlayerControllerBase::SetupInputComponent()
 void AHCTPlayerControllerBase::MovePawn(const FInputActionValue& Value)
 {
     const FVector2D Movement = Value.Get<FVector2D>();
-    if (APawn* Pawn = GetPawn())
+    if (APawn* CurrentPawn = GetPawn())
     {
-        Pawn->AddMovementInput(Pawn->GetActorForwardVector(), Movement.Y);
-        Pawn->AddMovementInput(Pawn->GetActorRightVector(), Movement.X);
+        CurrentPawn->AddMovementInput(CurrentPawn->GetActorForwardVector(), Movement.Y);
+        CurrentPawn->AddMovementInput(CurrentPawn->GetActorRightVector(), Movement.X);
     }
 }
 
