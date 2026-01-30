@@ -29,27 +29,11 @@ void AHCTPlayerControllerBase::SetupInputComponent()
 	
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
 	{
-		// Bind the movement action
-		if (MoveInputAction){
-			EnhancedInputComponent->BindAction(MoveInputAction, ETriggerEvent::Triggered, this, &AHCTPlayerControllerBase::MovePawn);
-		}
-		
 		// Bind the look action
 		if (LookInputAction){
 			EnhancedInputComponent->BindAction(LookInputAction, ETriggerEvent::Triggered, this, &AHCTPlayerControllerBase::Look);
 		}	
 	}
-}
-
-// ReSharper disable once CppMemberFunctionMayBeConst
-void AHCTPlayerControllerBase::MovePawn(const FInputActionValue& Value)
-{
-    const FVector2D Movement = Value.Get<FVector2D>();
-    if (APawn* CurrentPawn = GetPawn())
-    {
-        CurrentPawn->AddMovementInput(CurrentPawn->GetActorForwardVector(), Movement.Y);
-        CurrentPawn->AddMovementInput(CurrentPawn->GetActorRightVector(), Movement.X);
-    }
 }
 
 void AHCTPlayerControllerBase::Look(const FInputActionValue& Value)

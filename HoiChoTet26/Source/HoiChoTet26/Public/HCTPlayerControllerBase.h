@@ -10,6 +10,8 @@
 class UInputAction;
 class UInputMappingContext;
 
+
+
 /**
  * 
  */
@@ -30,12 +32,8 @@ protected:
 	UInputMappingContext* DefaultInputSet;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
-	UInputAction* MoveInputAction;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
 	UInputAction* LookInputAction;
 	
 private:
-	void MovePawn(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 };
