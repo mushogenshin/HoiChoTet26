@@ -95,7 +95,6 @@ void AHCTPlayerControllerBase::AddDefaultInputMappingCtx(const bool Clear) const
 		{
 			// ReSharper disable once CppUE4CodingStandardNamingViolationWarning
 			const TSoftObjectPtr<UInputMappingContext> FallbackIMC(FSoftObjectPath(TEXT("/Game/Input/IMC_Main.IMC_Main")));
-			UE_LOG(LogTemp, Warning, TEXT("AddDefaultInputMappingCtx: DefaultInputSet is null, loading fallback IMC from %s"), *FallbackIMC.ToString());
 			MappingCtx = FallbackIMC.LoadSynchronous();
 		}
 		
