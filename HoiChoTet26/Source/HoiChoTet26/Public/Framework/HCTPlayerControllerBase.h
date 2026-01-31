@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -9,6 +7,7 @@
 
 class UInputAction;
 class UInputMappingContext;
+class AHCTPawnBase;
 
 /**
  * 
@@ -26,16 +25,23 @@ public:
 protected:
 	virtual void SetupInputComponent() override;
 	
+	virtual void AcknowledgePossession(APawn* P) override;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
 	UInputMappingContext* DefaultInputSet;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
-	UInputAction* MoveInputAction;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
 	UInputAction* LookInputAction;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HoiChoTet|Input")
+	UInputAction* EjectGameInputAction;
+
+	// Reference to the original pawn to repossess after ejecting
+	UPROPERTY()
+	AHCTPawnBase* OriginalPawn;
+	
 private:
-	void MovePawn(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void EjectGame();
+	void AddDefaultInputMappingCtx(bool Clear=false) const;
 };
