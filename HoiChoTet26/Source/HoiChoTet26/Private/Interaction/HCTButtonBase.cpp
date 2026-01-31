@@ -13,11 +13,11 @@ AHCTButtonBase::AHCTButtonBase()
 	
 	// Firstly, create root scene component so that we can still change the box collision relative position
 	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
-	RootComponent = SceneRoot;
+	SetRootComponent(SceneRoot); // or RootComponent = SceneRoot;
 	
 	// Create, parent, and configure box collision component
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-	CollisionComponent->SetupAttachment(SceneRoot);
+	CollisionComponent->SetupAttachment(RootComponent);
 	CollisionComponent->SetBoxExtent(FVector(50.0f, 50.0f, 50.0f));
 	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	CollisionComponent->SetCollisionObjectType(ECC_WorldDynamic);
