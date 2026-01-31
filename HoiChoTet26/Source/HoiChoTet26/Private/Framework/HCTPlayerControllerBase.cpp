@@ -1,5 +1,6 @@
 #include "Framework/HCTPlayerControllerBase.h"
 #include "Framework/HCTPawnBase.h"
+#include "InputMappingContext.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
@@ -86,9 +87,21 @@ void AHCTPlayerControllerBase::AddDefaultInputMappingCtx(const bool Clear) const
 		{
 			Subsystem->ClearAllMappings();
 		}
-		if (DefaultInputSet)
+
+		const UInputMappingContext* MappingCtx = DefaultInputSet;
+
+		// Fallback to hard-coded asset if DefaultInputSet is null
+		if (!MappingCtx)
 		{
-			Subsystem->AddMappingContext(DefaultInputSet, 0);
+			// ReSharper disable once CppUE4CodingStandardNamingViolationWarning
+			const TSoftObjectPtr<UInputMappingContext> FallbackIMC(FSoftObjectPath(TEXT("/Game/Input/IMC_Main.IMC_Main")));
+			UE_LOG(LogTemp, Warning, TEXT("AddDefaultInputMappingCtx: DefaultInputSet is null, loading fallback IMC from %s"), *FallbackIMC.ToString());
+			MappingCtx = FallbackIMC.LoadSynchronous();
+		}
+		
+		if (MappingCtx)
+		{
+			Subsystem->AddMappingContext(MappingCtx, 0);
 		}
 	}
 }
