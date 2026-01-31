@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "HCTPawnBase.generated.h"
 
+class USphereComponent;
 class UInputAction;
 class UFloatingPawnMovement;
 struct FInputActionValue;
@@ -22,6 +23,9 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    USphereComponent* CollisionComponent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UFloatingPawnMovement* MovementComponent;

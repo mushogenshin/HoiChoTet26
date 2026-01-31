@@ -16,10 +16,10 @@ AHCTPawnBase::AHCTPawnBase()
 	bUseControllerRotationYaw = true;
 
 	// Create collision component as root
-	USphereComponent* CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
+	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
 	SetRootComponent(CollisionComponent);
 	CollisionComponent->InitSphereRadius(50.0f);
-	CollisionComponent->SetCollisionProfileName(TEXT("Pawn"));
+	CollisionComponent->SetCollisionProfileName(TEXT("Pawn")); // or CollisionComponent->SetCollisionObjectType(ECC_Pawn);
 	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	CollisionComponent->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
 	CollisionComponent->SetGenerateOverlapEvents(true);
